@@ -1,5 +1,7 @@
 import { Menu, Transition } from '@headlessui/react'
 import { DotsVerticalIcon } from '@heroicons/react/outline'
+import { useDispatch } from 'react-redux'
+import { deleteGoal } from '../features/goals/goalSlice'
 
 import {
   format,
@@ -8,7 +10,9 @@ import {
 import { Fragment } from 'react'
 
 
-export default function Meeting({ schedule }) {
+export default function Meeting({ schedule, key }) {
+
+    const dispatch = useDispatch()
     let startDateTime = parseISO(schedule.startHour)
     let endDateTime = parseISO(schedule.endHour)
   
@@ -65,7 +69,7 @@ export default function Meeting({ schedule }) {
                 <Menu.Item>
                   {({ active }) => (
                     <button
-                      
+                      onClick={() => dispatch(deleteGoal(schedule._id))}
                       className={classNames(
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                         'block px-4 py-2 text-sm w-full'
