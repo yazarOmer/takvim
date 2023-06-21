@@ -36,9 +36,9 @@ const Calender = () => {
   
       dispatch(getGoals())
   
-      // return () => {
-      //   dispatch(reset())
-      // }
+      return () => {
+        dispatch(reset())
+      }
   
     }, [isError, message, dispatch])
   
